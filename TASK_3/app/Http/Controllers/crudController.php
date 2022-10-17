@@ -21,18 +21,29 @@ class crudController extends Controller
    }
    public function storeData(Request $regData)
    {
+    $regValidation=[
+
+        'fname'=>'required',
+        'lname'=>'required',
+        'email'=>'required',
+        'password'=>'required',
+        'address'=>'required',
+        'phoneNo'=>'required',
+
+    ];
+    $this->validate($regData,$regValidation);
     return $regData -> all();
    }
    public function loginData(Request $loginData)
    {
 
-    $regValidation=[
+    $loginValidation=[
 
         'email'=>'required',
         'password'=>'required',
 
     ];
-    $this->validate($loginData,$regValidation);
+    $this->validate($loginData,$loginValidation);
     return $loginData->all();
    }
 }
