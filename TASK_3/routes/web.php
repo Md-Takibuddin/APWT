@@ -17,10 +17,13 @@ use App\Http\Controllers\crudController;
 //     return view('welcome');
 // });
 
-Route::get('/',[crudController::class,'login']);
+Route::get('/',[crudController::class,'showData']);
 Route::get('/registration',[crudController::class,'registration']);
 Route::get('/login',[crudController::class,'login']);
-Route::post('storeData',[crudController::class,'storeData']);
-Route::post('/loginData',[crudController::class,'loginData']);
+Route::get('/storeData',[crudController::class,'storeData']);
+Route::get('/show-data',[crudController::class,'showData']);
+Route::post('/loginData',[crudController::class,'loginDataCheck']);
+Route::get('/dashboard',[crudController::class,'dashboard']);
+Route::get('/loginError',[crudController::class,'dashboard']);
 
 

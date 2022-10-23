@@ -5,12 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\crud;
 use Session;
+use Hash;
+
 
 class crudController extends Controller
 {
    public function showData()
    {
-     return view('show_data');
+     $showData = crud::all();
+     return view('showData',compact('showData'));
    }
 
    public function registration()
@@ -20,6 +23,10 @@ class crudController extends Controller
    public function login()
    {
      return view('login');
+   }
+   public function dashboard()
+   {
+    return view('dashboard');
    }
    public function storeData(Request $regData)
    {
@@ -40,7 +47,7 @@ class crudController extends Controller
     $crud->lname = $regData->lname;
     $crud->email = $regData->email;
     $crud->phoneNumber = $regData->phoneNumber;
-    $crud->password = $regData->password;
+    $crud->password = Hash::make ($regData->password);
     $crud->Address = $regData->Address;
     $crud->save();
     Session::flash('regSuccess','Congratulation! Registration successful');
@@ -49,7 +56,7 @@ class crudController extends Controller
    }
 
 
-   public function loginData(Request $loginData)
+   public function loginDataCheck(Request $loginData)
    {
 
     $loginValidation=[
@@ -59,12 +66,30 @@ class crudController extends Controller
 
     ];
     $this->validate($loginData,$loginValidation);
-    return $loginData->all();
+
+    // $flag = crud::where('email',$loginData->email)
+    // ->where('password',$loginData->password)
+    // ->first();
+
+    $user = crud::where ('email','=',$loginData->email)->first();
+
+    if($user){
+        if (Hash::check($loginData->password,$user->password)){
+        $loginData->session()->put('user',$user->name);
+        return view('dashboard');
+        }
+        else {
+            Session::flash('fail','Email or Password in incorrect.');
+            return redirect()->back();
+        }
+    }
+    else {
+        Session::flash('fail','Email or Password in incorrect.');
+        return redirect()->back();
+    }
+
    }
 
-   public function getData(Type $var = null)
-   {
-    # code...
-   }
+
 
 }

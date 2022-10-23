@@ -20,7 +20,7 @@
         <p class="alert alert-success">{{Session::get('regSuccess')}}</p>
         @endif
 
-<form action="{{url('storeData')}}" method="post">
+<form action="{{url('storeData')}}" method="get">
     @csrf
     <div class="form-row">
     <div class="form-group col-md-6">

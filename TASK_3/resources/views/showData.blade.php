@@ -10,38 +10,32 @@
 
     <title>Hello, world!</title>
   </head>
-
+<br><br><br>
   <body>
     <div class="container">
-        <a href="{{url('registration')}}" class="btn btn-primary my-3">Registration</a>
         <table class="table">
             <thead class="thead-dark">
               <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
+                <th scope="col">Id</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone No.</th>
+                <th scope="col">Address</th>
+
               </tr>
             </thead>
             <tbody>
+                @foreach ($showData as $key=>$data )
               <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
+                <td>{{$data['id']}}</td>
+                <td>{{$data['fname']}}</td>
+                <td>{{$data['lname']}}</td>
+                <td>{{$data['email']}}</td>
+                <td>{{$data['phoneNumber']}}</td>
+                <td>{{$data['Address']}}</td>
               </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-              </tr>
+              @endforeach
             </tbody>
           </table>
 
