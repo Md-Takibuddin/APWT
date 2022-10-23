@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -14,6 +15,10 @@
   <body>
     <div class="container">
         <a href="{{url('login')}}" class="btn btn-primary my-3">Back to Login</a>
+
+        @if(Session::has('regSuccess'))
+        <p class="alert alert-success">{{Session::get('regSuccess')}}</p>
+        @endif
 
 <form action="{{url('storeData')}}" method="post">
     @csrf
@@ -32,6 +37,7 @@
         <span class="text-error" style="color: red">{{$message}}</span>
       @enderror
     </div>
+
 </div>
   <div class="form-row">
     <div class="form-group col-md-6">
@@ -53,16 +59,16 @@
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputCity">Address</label>
-      <input type="text" class="form-control" name="address" placeholder="312/16, K- Block, Banasree, Dhaka">
-      @error('address')
+      <input type="text" class="form-control" name="Address" placeholder="312/16, K- Block, Banasree, Dhaka">
+      @error('Address')
       <span class="text-error" style="color: red">{{$message}}</span>
     @enderror
     </div>
 
     <div class="form-group col-md-6">
       <label for="inputZip">Phone Number</label>
-      <input type="text" class="form-control" name="phoneNo" placeholder="01779011690">
-      @error('phoneNo')
+      <input type="text" class="form-control" name="phoneNumber" placeholder="01779011690">
+      @error('phoneNumber')
       <span class="text-error" style="color: red">{{$message}}</span>
     @enderror
     </div>

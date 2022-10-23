@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\crud;
+use Session;
 
 class crudController extends Controller
 {
@@ -23,17 +25,30 @@ class crudController extends Controller
    {
     $regValidation=[
 
-        'fname'=>'required',
-        'lname'=>'required',
-        'email'=>'required',
-        'password'=>'required',
-        'address'=>'required',
-        'phoneNo'=>'required',
+        'fname'=>'required | max:20',
+        'lname'=>'required | max:20',
+        'email'=>'required | max:25 | unique:cruds',
+        'password'=>'required | min:4',
+        'Address'=>'required | max:30',
+        'phoneNumber'=>'required | regex:/(01)[0-9]{9}/ ',
 
     ];
     $this->validate($regData,$regValidation);
-    return $regData -> all();
+
+    $crud = new Crud();
+    $crud->fname = $regData->fname;
+    $crud->lname = $regData->lname;
+    $crud->email = $regData->email;
+    $crud->phoneNumber = $regData->phoneNumber;
+    $crud->password = $regData->password;
+    $crud->Address = $regData->Address;
+    $crud->save();
+    Session::flash('regSuccess','Congratulation! Registration successful');
+
+    return redirect()->back();
    }
+
+
    public function loginData(Request $loginData)
    {
 
@@ -46,4 +61,10 @@ class crudController extends Controller
     $this->validate($loginData,$loginValidation);
     return $loginData->all();
    }
+
+   public function getData(Type $var = null)
+   {
+    # code...
+   }
+
 }

@@ -9,3 +9,5 @@ class crud extends Model
 {
     use HasFactory;
 }
+
+

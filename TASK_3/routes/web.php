@@ -20,7 +20,7 @@ use App\Http\Controllers\crudController;
 Route::get('/',[crudController::class,'login']);
 Route::get('/registration',[crudController::class,'registration']);
 Route::get('/login',[crudController::class,'login']);
-Route::post('/storeData',[crudController::class,'storeData']);
+Route::post('storeData',[crudController::class,'storeData']);
 Route::post('/loginData',[crudController::class,'loginData']);
 
 

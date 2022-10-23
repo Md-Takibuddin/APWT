@@ -16,7 +16,8 @@ class DatabaseSeeder extends Seeder
     {
 
         DB::table('cruds')->insert([
-            'name'=>'takib',
+            'fname'=>'takib',
+            'lname'=>'uddin',
             'email'=>'takib@gmail.com',
             'password'=>'1234',
             'phoneNumber'=>'01779011690',
@@ -24,7 +25,8 @@ class DatabaseSeeder extends Seeder
             ]);
 
             DB::table('cruds')->insert([
-                'name'=>'shipon',
+                'fname'=>'shipon',
+                'lname'=>'uddin',
                 'email'=>'shipon@gmail.com',
                 'password'=>'abcd',
                 'phoneNumber'=>'01548726541',
@@ -33,7 +35,8 @@ class DatabaseSeeder extends Seeder
                 ]);
 
                 DB::table('cruds')->insert([
-                    'name'=>'Rafio',
+                    'fname'=>'Rafio',
+                    'lname'=>'uddin',
                     'email'=>'rafio@gmail.com',
                     'password'=>'1234',
                     'phoneNumber'=>'01723654875',
