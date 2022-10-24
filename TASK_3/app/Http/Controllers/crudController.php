@@ -22,11 +22,16 @@ class crudController extends Controller
    }
    public function login()
    {
-     return view('login');
+    if(session()->has('email')){
+        return view('dashboard');
+        }else return view('login');
+
    }
    public function dashboard()
    {
+    if(session()->has('email')){
     return view('dashboard');
+    }else return view('login');
    }
    public function storeData(Request $regData)
    {
@@ -75,7 +80,9 @@ class crudController extends Controller
 
     if($user){
         if (Hash::check($loginData->password,$user->password)){
-        $loginData->session()->put('user',$user->name);
+        $loginData->session()->put('email',$loginData->email);
+
+        Session::flash('user','Welcome To Dashboard');
         return view('dashboard');
         }
         else {
@@ -88,6 +95,25 @@ class crudController extends Controller
         return redirect()->back();
     }
 
+   }
+
+   public function myData()
+   {
+    $email=session('email');
+    if(session()->has('email')){
+    $myData = crud::where ('email','=',$email)->first();
+     return view('myData',compact('myData'));
+    }
+    else {
+        return view('login');
+    }
+
+   }
+   public function logout()
+   {
+    Session::forget('key');
+    Session::flush();
+    return view('login');
    }
 
 
