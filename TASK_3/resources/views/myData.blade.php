@@ -26,6 +26,7 @@
                 <th scope="col">Address</th>
 
               </tr>
+
             </thead>
             <tbody>
 
@@ -39,6 +40,8 @@
               </tr>
             </tbody>
           </table>
+          <a href="{{'editData'}}" class="btn btn-success">Edit</a>
+          <a href="{{'deleteData'}}" class="btn btn-danger">Delete</a>
 
 
     </div>

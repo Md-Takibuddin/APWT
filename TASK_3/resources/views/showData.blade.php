@@ -23,8 +23,8 @@
                 <th scope="col">Email</th>
                 <th scope="col">Phone No.</th>
                 <th scope="col">Address</th>
-
               </tr>
+
             </thead>
             <tbody>
                 @foreach ($showData as $key=>$data )

@@ -27,6 +27,10 @@ Route::get('/dashboard',[crudController::class,'dashboard']);
 Route::get('/loginError',[crudController::class,'dashboard']);
 Route::get('/myData',[crudController::class,'myData']);
 Route::get('/logout',[crudController::class,'logout']);
+Route::get('/editData',[crudController::class,'editData']);
+Route::get('/deleteData',[crudController::class,'deleteData']);
+Route::post('/updateData',[crudController::class,'updateData']);
+
 
 
 

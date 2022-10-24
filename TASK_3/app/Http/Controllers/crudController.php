@@ -116,6 +116,41 @@ class crudController extends Controller
     return view('login');
    }
 
+   public function editData()
+   {
+    $email=session('email');
+    $editData = crud::where ('email','=',$email)->first();
+    return view('editData',compact('editData'));
+   }
+
+   public function updateData(Request $regData)
+   {
+    $email=session('email');
+
+    $regValidation=[
+
+        'fname'=>'required | max:20',
+        'lname'=>'required | max:20',
+        'email'=>'required | max:25 | unique:cruds',
+        'password'=>'required | min:4',
+        'Address'=>'required | max:30',
+        'phoneNumber'=>'required | regex:/(01)[0-9]{9}/ ',
+    ];
+    $this->validate($regData,$regValidation);
+
+    $crud = crud::where ('email','=',$email)->first();
+    //$student = Student::where('id', $request->id)->first();
+    $crud->fname = $regData->fname;
+    $crud->lname = $regData->lname;
+    $crud->email = $regData->email;
+    $crud->phoneNumber = $regData->phoneNumber;
+    $crud->Address = $regData->Address;
+    $crud->save();
+    Session::flash('regSuccess','Data Updated');
+
+    return view('myData');
+   }
+
 
 
 }
