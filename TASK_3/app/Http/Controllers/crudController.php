@@ -147,7 +147,6 @@ class crudController extends Controller
     $crud->Address = $regData->Address;
     $crud->save();
     Session::flash('regSuccess','Data Updated');
-
     return view('myData');
    }
 
